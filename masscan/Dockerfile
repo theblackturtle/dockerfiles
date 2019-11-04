@@ -12,7 +12,7 @@ RUN set -x \
         git \
         linux-headers \
         && rm -rf /var/lib/apt/lists/* \
-        && git clone --depth 1 --branch "$MASSCAN_VERSION" https://github.com/robertdavidgraham/masscan.git /usr/src/masscan \
+        && git clone https://github.com/robertdavidgraham/masscan.git /usr/src/masscan \
         && ( \
         cd /usr/src/masscan \
         && make \
