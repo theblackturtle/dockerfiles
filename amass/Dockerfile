@@ -8,6 +8,7 @@ RUN rm github-releases_linux_amd64
 RUN unzip amass_*_linux_amd64.zip && mv amass_*_linux_amd64 amass
 
 FROM alpine:latest
+RUN apk --no-cache add ca-certificates
 COPY --from=builder /amass/amass /bin/amass
 COPY --from=builder /amass/examples/wordlists/ /wordlists/
 RUN chmod +x /bin/amass
