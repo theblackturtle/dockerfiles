@@ -1,16 +1,13 @@
-FROM golang:1.13.4-alpine3.10 AS builder
-
-WORKDIR /
-RUN apk add --no-cache wget unzip && rm -rf /var/cache/apk/*
-RUN wget https://github.com/theblackturtle/github-releases/releases/download/v0.1.1/github-releases_linux_amd64 && chmod +x github-releases_linux_amd64
-RUN ./github-releases_linux_amd64 --user OWASP --project Amass --kernel linux --architecture amd64 --download
-RUN rm github-releases_linux_amd64
-RUN unzip amass_*_linux_amd64.zip && mv amass_*_linux_amd64 amass
+FROM golang:1.13-alpine3.10 as build
+RUN apk --no-cache add git
+RUN go get github.com/OWASP/Amass; exit 0
+ENV GO111MODULE on
+WORKDIR /go/src/github.com/OWASP/Amass
+RUN go install ./...
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
-COPY --from=builder /amass/amass /bin/amass
-COPY --from=builder /amass/examples/wordlists/ /wordlists/
-RUN chmod +x /bin/amass
+COPY --from=build /go/bin/amass /bin/amass
+COPY --from=build /go/src/github.com/OWASP/Amass/examples/wordlists/ /wordlists/
 ENV HOME /
 ENTRYPOINT ["/bin/amass"]
