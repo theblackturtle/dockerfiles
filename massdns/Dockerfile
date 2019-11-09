@@ -1,5 +1,6 @@
 FROM alpine:latest
 
+WORKDIR /
 RUN apk --update --no-cache add ldns \
   && apk --no-cache --virtual .deps add ldns-dev \
                                         git \
@@ -13,4 +14,4 @@ RUN apk --update --no-cache add ldns \
   && rm -rf /massdns \
   && apk del .deps
 
-ENTRYPOINT ["/bin/massdns"]
+# ENTRYPOINT ["/bin/massdns"]
