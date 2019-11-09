@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update --no-cache add bash ldns \
+RUN apk --update --no-cache add bash gawk sed ldns \
   && apk --no-cache --virtual .deps add ldns-dev \
                                         git \
                                         build-base \
