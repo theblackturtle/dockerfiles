@@ -22,4 +22,4 @@ RUN set -x \
 	&& apk del .build-deps
 
 
-ENTRYPOINT ["masscan"]
+CMD ["masscan"]

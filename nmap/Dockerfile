@@ -4,4 +4,4 @@ RUN opkg-install nmap
 
 WORKDIR /
 
-ENTRYPOINT ["nmap"]
+CMD ["nmap"]

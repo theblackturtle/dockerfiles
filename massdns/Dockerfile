@@ -13,4 +13,4 @@ RUN apk --update --no-cache add bash gawk sed ldns \
   && rm -rf /massdns \
   && apk del .deps
 
-# ENTRYPOINT ["/bin/massdns"]
+CMD ["/bin/massdns"]

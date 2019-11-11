@@ -5,4 +5,4 @@ RUN git clone https://github.com/ProjectAnte/dnsgen.git\
     && cd dnsgen\
     && python3 setup.py install
 
-# ENTRYPOINT ["dnsgen"]
+CMD ["dnsgen"]
