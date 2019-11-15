@@ -4,4 +4,6 @@ RUN apk add --no-cache git
 RUN git clone https://github.com/maK-/parameth.git
 WORKDIR /parameth
 
+RUN pip3 install requirements.txt
+
 CMD ["python3","parameth.py"]
