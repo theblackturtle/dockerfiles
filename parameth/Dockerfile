@@ -1,6 +1,6 @@
 FROM python:3.8.0-alpine3.10
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git g++
 RUN git clone https://github.com/maK-/parameth.git
 WORKDIR /parameth
 
